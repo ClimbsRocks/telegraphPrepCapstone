@@ -1,3 +1,5 @@
+// Welcome to the final project for Telegraph Prep! Here we'll be pulling together everything we've learned so far in the course.
+
 // The $(document).ready(function() {}) just says "Wait to run the code inside here until after everything we need on the page has loaded."
 
 $(document).ready(function() {
@@ -14,10 +16,12 @@ var gameBoard = makeGameBoard(8);
 console.log('our gameBoard is: ', gameBoard);
 // One of the things you'll need to be great at as an engineer is debugging. Debugging is nothing more than problem solving, or having fun with a puzzle. 
 // Debugging pattern:
-  // 1. Verify all of your assumptions by console.logging them with clear comments on what each log is
+  // 1. Verify all of your assumptions by logging them to the console with clear comments on what each log is
   // 2. Find the last point in your code where things are doing what you expect them to/ the first point in your code where they're not doing what you expect.
   // 3. Iterate rapidly. Try new things (and console.log them!) until you get to a solution that works. Pay attention to each new result along the way (even if it's not what you expect it to be) to see what new information you can learn from it.
   // 4. High five someone nearby when you figure it out!
+
+// We've included the underscore.js library on the page, so feel free to use it throughout this project. 
 
 // gameBoard is an array of arrays (an array that is filled with other arrays). Let's start by using each to iterate through the gameBoard array, console.logging each item inside the gameBoard array. You should see 8 arrays, each of length 8, logged to your console. Each array here represents a row. 
 
@@ -27,7 +31,7 @@ console.log('our gameBoard is: ', gameBoard);
 // What you'll see is 8 different objects logged to your console. Click into them to explore them more. 
 // Each of these objects represents a square. We have many different pieces of information we want to store about each square: what color it is, what position it is on the board, what gamePiece is at that position, etc. An object is a perfect way to store information about all these different properties associated with that square. 
 
-// gameBoard[row][column] will get you the squareObj at that position in the gameBoard. So gameBoard[2][6] will point to the squareObj on row 3 column 7. Quick review on how this works: JS chains operators together, the results of each one being passed to the next operation. So first we're accessing the thing at position 2 in our gameBoard when we say gameBoard[2]. Then, within that thing (which is an array representing a row), we're asking for the thing at the 6th position (which is going to be a squareObj). 
+// gameBoard[row][column] will get you the squareObj at that position in the gameBoard. So gameBoard[2][6] will point to the squareObj on row 3 column 7. Quick review on how this works: JS chains operators together, the results of each one being passed to the next operation. So first we're accessing the thing at index 2 in our gameBoard when we say gameBoard[2]. Then, within that thing (which is an array representing a row), we're asking for the thing at the 6th index (which is going to be a squareObj). 
 // We could chain this together even more. Explain with your pair each individual operation that's going on when we say:
 gameBoard[3][5].color = 'black';
 
@@ -35,8 +39,8 @@ gameBoard[3][5].color = 'black';
 // Use each to iterate through the first row of the gameBoard (the array at position 0 in the gameBoard array). 
   // Let's change every square to a different color of your choosing. 
 
-    // If you're not familiar with colors in JS, you can do this in three main ways: through rgb values, hex values (the way we've done it right now), or just typing in a color name like 'orange'
-  // Now let's do the same thing using map on the second row of our gameBoard
+    // If you're not familiar with colors in JS, you can do this in three main ways: through rgb values, hex values (the way we've done it right now), or just typing in a color name like 'orange'.
+  // Now let's do the same thing using map on the second row of our gameBoard.
 
     // What's the key difference between map and each? map returns an array, whereas each only has side effects, and does not return anything. 
     // Think through how we'd use each and map in different ways to accomplish the same goal. 
@@ -67,7 +71,7 @@ gameBoard[3][5].color = 'black';
   // gameBoard[3][5].gamePiece.imageURL = "http://cs307103.vk.me/v307103801/4aad/kGuRYIMoJnw.jpg";
 
   // Now that we've added a piece to the board, let's use that piece to practice filter. 
-  // Invoke filter on the row that you just added the gamePiece to. See if you can use it to return an array of only the square(s) that have a gamePiece on them. Do you remember where we're storing gamePieces on each squareObj? 
+  // Invoke filter on the row that you just added the gamePiece to. See if you can use it to return an array of only the square(s) that have a gamePiece on them. Do you remember where we're storing gamePiece on each squareObj? 
 
   // Now try adding gamePieces to a couple of different rows throughout the board. 
 
@@ -75,14 +79,15 @@ gameBoard[3][5].color = 'black';
     // Hint: Remember that each can't return anything, but it can have side effects (that is, modify variables it has scope access to).
 
   // Great! At this point, we should have an array that is filled with nested arrays. Each object in those nested arrays should be a square that has a gamePiece on it. 
-    // That should look something like: "results after filter: [Array[0], Array[0], Array[0], Array[3], Array[0], Array[2], Array[0], Array[0]]" for a gameBoard that has three gamePieces on row 3 and two game pieces on row 5.
- 
+    // That should look something like: "results after filter: [Array[0], Array[0], Array[0], Array[3], Array[0], Array[2], Array[0], Array[0]]" for a gameBoard that has three gamePieces on row 3 and two gamePieces on row 5.
+
 // We're now going to go on a mini-sprint covering reduce, the last critical functional programming tool. Understanding reduce will let us take this messy nested array we have, and turn it into a single, flattened array. 
 
 //Reduce mini-sprint:
 // You'll notice that oftentimes what you're doing with for loops and each statements is reducing an entire collection down to a single answer. This is such a common pattern that there's a canonical functional programming function called reduce. Let's explore what reduce does, and how it boils a collection down to a single answer!
 // What reduce does is iterate over a collection, and invoke a callback function on each item in that collection. 
   // That callback function takes two parameters: the result from the previous iteration, and the current item.
+  // That callback returns a single item, given these two inputs. 
   // An obvious way of using reduce is to sum up the values in an array. That would look like so:
   var testArr = [6,7,8,9,10];
   var sum = _.reduce(testArr, function(previous, current) {
